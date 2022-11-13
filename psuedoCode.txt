@@ -1,0 +1,51 @@
+Node.h
+    private
+        string value
+        vector<Node*> children
+        int count
+    public 
+        Node(data);
+Node.cpp
+    Node:Node(string data){
+        value = data
+        children = nullptr
+        count = 0
+    }
+    friend trie
+trie.h
+trie
+    private
+        Node* root
+        search(needle, root)
+        insert(word);
+    public 
+        Trie:trie Constructor
+        search(needle);
+        insert(word);
+trie.cpp
+    trie:trie
+    search(needle,root){
+
+    }
+    insert(needle,root){
+
+    }
+    search(needle){
+        search(needle,root);
+    }
+    insert(needle){
+        insert(needle,root);
+    }
+
+Main.cpp
+
+    new trie
+    take user input to select book or telephone book, scrabble dictionary?
+    read file
+    while (line){
+        insert into trie
+    }
+
+    take user input to search trie
+    trie.search(needle);
+
