@@ -1,0 +1,61 @@
+Breakdown
+
+  Groups of 3-4 students
+    Groups of size 4 will be expected to produce more
+
+  Deliverables include:
+    source code submitted (GitHub)
+    class presentation (Gradescope/Zoom)
+    project report (Gradescope)
+
+Source Code (20%)
+
+  Code Repository must be created on GitHub
+    this will be considered as your submission (no need to upload source code to gradescope)
+    individual contributions must be clear on the repo
+
+  Code Organization (graded)
+    use of classes and functions encouraged
+    proper indentation
+    use of comments
+
+  TAs may be asked to compile your code locally (graded)
+    must create a markdown README in your GitHub repo with instructions on dependencies and how to compile your code
+    if project is incomplete, partial credit may be given after TAs analyze your code
+
+Presentation (40%)
+  Team will present for 15 minutes to the class (Zoom)
+    explain the data structure/algorithm your team is focusing on (8 min)
+    show your source code (running) and findings (plots) (4 min)
+    answer questions (3)
+    
+  Partial credit may be given if the project is incomplete but students
+    show a very good understanding of the data structure/algorithm
+  Submit the PDF of your presentation to Gradescope
+  % of your presentation grade will come from observing other group’s presentation
+
+Project Report (40%)
+  Report must include:
+    title of project
+    names of all team members
+    introduction (explain the context and purpose of your project)
+    methods (explain the data structure/algorithm with more details)
+    implementation (describe your work, include plots or figures if necessary)
+    contributions (describe precisely what each member contributed to the project)
+  Partial credit may be given if the project is incomplete but the report includes relevant information regarding your progress
+   
+  Submit the PDF of your report to Gradescope
+  
+  
+Topic: Trie
+
+  Implement the Data Structure (using classes)
+  Must store the words of an input text file
+    for the word (node) in the tree, a count with the number of repeats muct also be stored
+  Ensure at least insert/serach methods are correctly implemented
+    search must also return/show the count
+  Generate a DOT file for visualization
+
+  
+  
+
