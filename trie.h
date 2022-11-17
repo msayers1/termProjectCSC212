@@ -13,6 +13,7 @@ class Trie
 
         void destroy(Node* root);
         bool search(int data, Node* root);
+        bool remove(int data, Node* root);
 
     public:
         Trie();
@@ -25,6 +26,7 @@ class Trie
         void postorder(std::ostream& os = std::cout);
 
         bool search(int data);
+        bool remove(int data);
 
 };
 

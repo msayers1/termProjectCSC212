@@ -21,6 +21,9 @@ void Trie::destroy(Node* root){
 bool Trie::search(int data, Node* root){
 }
 
+bool Trie::remove(int data, Node* root){
+
+}
 /*
  * Public Functions
 */
@@ -51,5 +54,9 @@ void Trie::postorder(std::ostream& os){
 }
 
 bool Trie::search(int data){
+
+}
+
+bool Trie::remove(int data){
 
 }
