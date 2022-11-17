@@ -1,6 +1,6 @@
 #include "trie.h"
 
-Node* Trie::insert(int data, Node* root){
+Node* Trie::insert(std::string data, Node* root){
 
 }
 
@@ -18,10 +18,10 @@ void Trie::destroy(Node* root){
 
 }
 
-bool Trie::search(int data, Node* root){
+bool Trie::search(std::string data, Node* root){
 }
 
-bool Trie::remove(int data, Node* root){
+bool Trie::remove(std::string data, Node* root){
 
 }
 /*
@@ -36,7 +36,7 @@ Trie::~Trie(){
 
 }
 
-void Trie::insert(int data){
+void Trie::insert(std::string data){
 
 }
 
@@ -53,10 +53,10 @@ void Trie::postorder(std::ostream& os){
 
 }
 
-bool Trie::search(int data){
+bool Trie::search(std::string data){
 
 }
 
-bool Trie::remove(int data){
+bool Trie::remove(std::string data){
 
 }

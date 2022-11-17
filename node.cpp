@@ -2,8 +2,8 @@
 #include "node.h"
 
     Node::Node(){
-        this->key = NULL;
+        
     };
-    Node::Node(int data){
+    Node::Node(std::string data){
         this->key = data;
     };
