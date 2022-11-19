@@ -27,6 +27,6 @@ class Trie
 
         bool search(std::string data);
         bool remove(std::string data);
-
+        void Trie::visualize(std::string filename);
 };
 
