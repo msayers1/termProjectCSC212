@@ -29,6 +29,7 @@ int main(int argc, char* argv[]){
         result = TrieTree->search(input);
         if(result){
             std::cout << "\nYour word is a Scrabble word.";
+            
         } else {
             std::cout << "\nYour word is not a Scrabble word.";
         }
