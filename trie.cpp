@@ -1,7 +1,8 @@
 #include "trie.h"
 
 Node* Trie::insert(std::string data, Node* root){
-
+    if()
+    data.length
 }
 
 
@@ -37,7 +38,7 @@ Trie::~Trie(){
 }
 
 void Trie::insert(std::string data){
-
+    this->insert(data, this->root);
 }
 
 
@@ -58,5 +59,9 @@ bool Trie::search(std::string data){
 }
 
 bool Trie::remove(std::string data){
+
+}
+
+void Trie::visualize(std::string filename){
 
 }
