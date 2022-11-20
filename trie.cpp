@@ -1,9 +1,27 @@
 #include "trie.h"
 
-Node* Trie::insert(std::string data, Node* root){
-
+void insert(Node* root, std::string entry) {
+    if (root == nullptr) {
+        std::cout << "Trie not found." << std::endl;
+    }
+    Node* currentNode = root;
+    for (int i = 0; i < entry.length(); i++) {
+        int index;
+        if(entry[i] >= 'A' && entry[i] <= 'Z'){
+            index = entry[i] - 'A';
+        }
+        if(entry[i] >= 'a' && entry[i] <= 'z'){
+            index = entry[i] - 'a';
+        }
+        if (currentNode->children[index] == nullptr) {
+            currentNode->children[index] = newNode(entry[i]);
+            currentNode->children[index]->generation = i;
+            currentNode->children[index]->value = entry[i];
+        }
+        currentNode = currentNode->children[index];
+    }
+    currentNode->isWord = true;
 }
-
 
 void Trie::preorder(Node* root, std::ostream& os){
 }
