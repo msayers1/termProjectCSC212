@@ -1,11 +1,17 @@
 #include "trie.h"
 
-void insert(Node* root, std::string entry) {
+// Inserts an std::string into the trie
+void insert(Node* root, std::string entry){
+    // If the trie is empty, return CBT
     if (root == nullptr) {
-        std::cout << "Trie not found." << std::endl;
+        std::cout << "Trie empty." << std::endl;
+        return;
     }
+    // Create a temporary node that will iterate through the trie
     Node* currentNode = root;
+    // Loop through the length of the string being inserted
     for (int i = 0; i < entry.length(); i++) {
+        // Initialize the index variable, representing the location of the character
         int index;
         if(entry[i] >= 'A' && entry[i] <= 'Z'){
             index = entry[i] - 'A';
@@ -13,13 +19,19 @@ void insert(Node* root, std::string entry) {
         if(entry[i] >= 'a' && entry[i] <= 'z'){
             index = entry[i] - 'a';
         }
+        // If the node reached is empty...
         if (currentNode->children[index] == nullptr) {
+            // Create a new node at that index
             currentNode->children[index] = newNode(entry[i]);
+            // Update the node's generation
             currentNode->children[index]->generation = i;
-            currentNode->children[index]->value = entry[i];
+            // Add the node's value
+            currentNode->children[index]->key = entry[i];
         }
+        // Travel to the next node
         currentNode = currentNode->children[index];
     }
+    // Mark the last letter as the end of a word
     currentNode->isWord = true;
 }
 
