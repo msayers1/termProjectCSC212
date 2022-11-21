@@ -7,12 +7,13 @@
 #include <sstream>
 #include <cmath>
 #include <ctime>
-#include "trie.h"
+//#include "trie.h"
+#include "trie_vanessa.h"
 
 void readFile(std::string filename, std::vector<std::string>*wordList);
 
 int main(int argc, char* argv[]){
-    Trie *TrieTree = new Trie();
+    Trie0 *TrieTree = new Trie0();
 
     std::string input;
     std::vector<std::string> wordList;
@@ -21,6 +22,8 @@ int main(int argc, char* argv[]){
         //std::cout << wordList[i] << std::endl;
         TrieTree->insert(wordList[i]);
     }
+    
+    TrieTree->visualize("graph.dot");
     bool running = true;
     bool result = false;
     
