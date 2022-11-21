@@ -49,6 +49,11 @@ void Trie::destroy(Node* root){
 }
 
 bool Trie::search(std::string data, Node* root){
+    
+    for(int i = 0; i < data.length(); i++){
+        
+        
+   return 
 }
 
 bool Trie::remove(std::string data, Node* root){
@@ -67,6 +72,7 @@ Trie::~Trie(){
 }
 
 void Trie::insert(std::string data){
+    
 
 }
 
