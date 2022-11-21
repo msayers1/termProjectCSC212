@@ -50,9 +50,22 @@ void Trie::destroy(Node* root){
 
 bool Trie::search(std::string data, Node* root){
     
+    //
+    int location = 0; 
+    
+    // If the trie is empty
+    if (root == nullptr) {
+        std::cout << "Trie empty." << std::endl;
+        return false;
+    }
+    
+     // Create a temporary node that will iterate through the trie
+    TrieNode* currentNode = root;
+    
+    // loops through data string 
     for(int i = 0; i < data.length(); i++){
         
-        
+    
    return 
 }
 
