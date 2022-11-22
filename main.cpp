@@ -7,27 +7,44 @@
 #include <sstream>
 #include <cmath>
 #include <ctime>
-//#include "trie.h"
-#include "trie_vanessa.h"
+// #include "trie_Mike.h"
+#include "trie.h"
 
 void readFile(std::string filename, std::vector<std::string>*wordList);
 
 int main(int argc, char* argv[]){
-    Trie0 *TrieTree = new Trie0();
+    Trie *TrieTree = new Trie();
+    Trie *TrieTree2 = new Trie();
+    // Trie *TrieTree3 = new Trie0();
 
-    std::string input;
-    std::vector<std::string> wordList;
-    readFile("scrabbleWords.txt", &wordList); 
-    for(int i = 0; i < wordList.size(); i++){
+    // std::string input;
+    // std::vector<std::string> wordList;
+    // readFile("scrabbleWords.txt", &wordList); 
+    // for(int i = 0; i < wordList.size(); i++){
+    //     //std::cout << wordList[i] << std::endl;
+    //     TrieTree->insert(wordList[i]);
+    // }
+    
+
+    std::vector<std::string> wordList2;
+    readFile("visualizationWordList.txt", &wordList2); 
+    for(int i = 0; i < wordList2.size(); i++){
         //std::cout << wordList[i] << std::endl;
-        TrieTree->insert(wordList[i]);
+        TrieTree2->insert(wordList2[i]);
     }
     
-    TrieTree->visualize("graph.dot");
+    TrieTree2->visualize("graph1.dot");
     bool running = true;
     bool result = false;
     
-
+    // std::vector<std::string> wordList3;
+    // readFile("visualizationWordList.txt", &wordList3); 
+    // for(int i = 0; i < wordList3.size(); i++){
+    //     //std::cout << wordList[i] << std::endl;
+    //     TrieTree3->insert(wordList3[i]);
+    // }
+    
+    // TrieTree3->visualize("graph2.dot");
 
     // while(running == true){
     //     std::cout << "\nThis Program will take an input of a word." << std::endl;

@@ -1,4 +1,4 @@
-#include "trie_vanessa.h"
+#include "trie_Mike.h"
 #include <string>
 #include <iostream>
 #include <stdlib.h>
@@ -6,8 +6,7 @@
 #include <fstream>
 #include <iomanip>
 
-// Inserts an std::string into the trie
-void Trie0::insert(Node* root, std::string entry){
+void Trie::insert(std::string data, Node* root, int pointer){
     // If the trie is empty, return CBT
     if (root == nullptr) {
         std::cout << "Trie empty." << std::endl;
@@ -17,56 +16,56 @@ void Trie0::insert(Node* root, std::string entry){
     Node* currentNode = root;
     // Loop through the length of the string being inserted
     int index;
-    for (int i = 0; i < entry.length(); i++) {
+    for (int i = 0; i < data.length(); i++) {
         // Initialize the index variable, representing the location of the character
-        if(entry[i] >= 'A' && entry[i] <= 'Z'){
-            index = entry[i] - 'A';
+        if(data[i] >= 'A' && data[i] <= 'Z'){
+            index = data[i] - 'A';
         }
-        if(entry[i] >= 'a' && entry[i] <= 'z'){
-            index = entry[i] - 'a';
+        if(data[i] >= 'a' && data[i] <= 'z'){
+            index = data[i] - 'a';
         }
         // If the node reached is empty...
         if (currentNode->children[index] == nullptr) {
             // Create a new node at that index
-            currentNode->children[index] = new Node(entry[i]);
+            currentNode->children[index] = new Node(data[i]);
             // Update the node's generation - there is no generation yet. 
             //currentNode->children[index]->generation = i;
             // Add the node's value - the key is setup with new Node. 
-            //currentNode->children[index]->key = entry[i];
+            //currentNode->children[index]->key = data[i];
         }
         // Travel to the next node
         currentNode = currentNode->children[index];
     }
     // Mark the last letter as the end of a word 
-    currentNode->isWord = true;
-    currentNode->key = entry;
-    currentNode->count = currentNode->count++;
+    
     //std::cout << entry << " was entered into the trie." << std::endl;
     
 }
 
-void Trie0::preorder(Node* root, std::ostream& os){
+
+void Trie::preorder(Node* root, std::ostream& os){
 }
 
-void Trie0::inorder(Node* root, std::ostream& os){
+void Trie::inorder(Node* root, std::ostream& os){
 }
 
-void Trie0::postorder(Node* root, std::ostream& os){
+void Trie::postorder(Node* root, std::ostream& os){
 }
 
-void Trie0::destroy(Node* root){
-
-}
-
-bool Trie0::search(std::string data, Node* root){
-}
-
-bool Trie0::remove(std::string data, Node* root){
+void Trie::destroy(Node* root){
 
 }
 
-void Trie0::visualize(std::ofstream* output_file, Node* root){
-    Node* currentNode = root;
+bool Trie::search(std::string data, Node* root){
+}
+
+bool Trie::remove(std::string data, Node* root){
+
+}
+
+
+void Trie::visualize(std::ofstream* output_file, Node* root){
+   Node* currentNode = root;
     Node* child;
     std::string parentKey;
     std::string childKey; 
@@ -90,47 +89,44 @@ void Trie0::visualize(std::ofstream* output_file, Node* root){
  * Public Functions
 */
 
-Trie0::Trie0(){
-    this->root = new Node();
+Trie::Trie(){
+    this->root = new Node("root");
+}
+
+Trie::~Trie(){
 
 }
 
-Trie0::~Trie0(){
-
-}
-
-void Trie0::insert(std::string data){
-    this->insert(this->root, data);
+void Trie::insert(std::string data){
+    this->insert(data, this->root);
 }
 
 
-void Trie0::preorder(std::ostream& os){
+void Trie::preorder(std::ostream& os){
 
 }
 
-void Trie0::inorder(std::ostream& os){
+void Trie::inorder(std::ostream& os){
 
 }
 
-void Trie0::postorder(std::ostream& os){
+void Trie::postorder(std::ostream& os){
 
 }
 
-bool Trie0::search(std::string data){
+bool Trie::search(std::string data){
 
 }
 
-bool Trie0::remove(std::string data){
+bool Trie::remove(std::string data){
 
 }
 
-void Trie0::visualize(std::string filename){
-    std::ofstream output_file(filename);
+void Trie::visualize(std::string filename){
+     std::ofstream output_file(filename);
     //std::cout << "digraph g {" << std::endl;
     output_file << "digraph g { \n";
     this->visualize(&output_file, this->root);
     output_file << "}";
     output_file.close();
-
-    
 }

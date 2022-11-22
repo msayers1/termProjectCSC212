@@ -6,40 +6,67 @@
 #include <fstream>
 #include <iomanip>
 
-Node* Trie::insert(std::string data, Node* root, int pointer){
-    if(pointer == (data.length() - 1)){
-        //std::cout << data << std::endl;
-        return new Node(data);
+// Inserts an std::string into the trie
+void Trie::insert(Node* root, std::string entry){
+    // If the trie is empty, return CBT
+    if (root == nullptr) {
+        std::cout << "Trie empty." << std::endl;
+        return;
     }
+    // Create a temporary node that will iterate through the trie
     Node* currentNode = root;
-    pointer++;
-    int letter = int(data[pointer]);
-    std::string letterStr = std::to_string(data[pointer]);
-    if(65 <= letter && letter <= 90){
-        letter = letter + 32;
+    // Loop through the length of the string being inserted
+    int index;
+    for (int i = 0; i < entry.length(); i++) {
+        // Initialize the index variable, representing the location of the character
+        if(entry[i] >= 'A' && entry[i] <= 'Z'){
+            index = entry[i] - 'A';
+        }
+        if(entry[i] >= 'a' && entry[i] <= 'z'){
+            index = entry[i] - 'a';
+        }
+        // If the node reached is empty...
+        if (currentNode->children[index] == nullptr && (i != (entry.length() - 1))) {
+            // Create a new node at that index
+            currentNode->children[index] = new Node(entry[i]);
+            // Update the node's generation - there is no generation yet. 
+            //currentNode->children[index]->generation = i;
+            // Add the node's value - the key is setup with new Node. 
+            //currentNode->children[index]->key = entry[i];
+        } 
+        
+        if (i == (entry.length() - 1)){
+            bool found = false;
+            int index;
+            //std::cout << entry << "number of children of the currentNode:" << currentNode->children.size() << std::endl;
+            for(int i = 26; i < currentNode->children.size(); i++){
+                // std::cout << entry << "/" << currentNode->children[i]->key << ": " <<  (currentNode->children[i]->key == entry) << std::endl;            
+                if(currentNode->children[i]->key == entry){
+                    // std::cout << entry << " " <<  currentNode->children[i]->count << std::endl;            
+                    found = true;
+                    currentNode = currentNode->children[i];
+                    currentNode->count = currentNode->count + 1;
+                }
+            }
+            if(!found){
+                //Finish the word. 
+                Node* temp = new Node(entry);
+                currentNode->children.push_back(temp);
+                currentNode = temp;
+                currentNode->isWord = true;
+                currentNode->count = 1;
+            }
+        } else {
+            // Travel to the next node
+            currentNode = currentNode->children[index];
+        } 
+        
     }
-    std::vector<Node*>* children = &root->children;
-    if((*children)[letter] != nullptr){
-        currentNode = root->children[letter];
-    } else {
-        currentNode = new Node(letterStr);
-    }
-    temp = this->insert(data, currentNode, pointer);
-
-    //std::cout << letter <<  typeid((*currentNode).children).name() << std::endl;
-    // if(!(*currentNode).children[(*temp).key])
-    //     (*currentNode).children[(*temp).key] = temp;
-    // if(!root->children[letter]){
-    //     (*root).children[letter] = currentNode;
-    // }
-    //std::cout << (*root).key << " -> " << (*currentNode).key << std::endl;
-    //std::cout << (*currentNode).key << " -> " << std::endl;
-    //(*currentNode).children.push_back(temp);
-    //(*currentNode).count++;
-    //q(*root).children.push_back(currentNode);
-    return root;
+    // Mark the last letter as the end of a word 
+    
+    //std::cout << entry << " was entered into the trie." << std::endl;
+    
 }
-
 
 void Trie::preorder(Node* root, std::ostream& os){
 }
@@ -55,32 +82,66 @@ void Trie::destroy(Node* root){
 }
 
 bool Trie::search(std::string data, Node* root){
+    //
+    int location = 0; 
+    
+    // If the trie is empty
+    if (root == nullptr) {
+        std::cout << "Trie empty." << std::endl;
+        return false;
+    }
+    
+     // Create a temporary node that will iterate through the trie
+    Node* currentNode = root;
+    
+    // loops through data string 
+    for(int i = 0; i < data.length(); i++){}
+        
+    
+   return true;
 }
 
 bool Trie::remove(std::string data, Node* root){
 
 }
 
-
-void Trie::visualize(std::ofstream* output_file, Node* root){
+void Trie::visualize(std::ostringstream *listNodes, std::ostringstream *relationships, Node* root){
     Node* currentNode = root;
     Node* child;
-    std::cout << "The size:" << (*currentNode).children.size()  << std::endl;
-    // for(int i = 0; i < (*currentNode).children.size(); i++){
-    //     child = (*currentNode).children[i];
-    //     std::cout << (*currentNode).key << "(" << i << ")" << " -> " << (*child).key << std::endl;
-    //     //(*output_file) << (*currentNode).key << " -> " << (*child).key << ";\n";
-    //     std::cout << (*child).key << std::endl;
-    //     visualize(output_file, child);
-
-    // }
+    std::string parentKey;
+    std::string childKey; 
+    //std::cout << "The size:" << (*currentNode).children.size()  << std::endl;
+    std::ostringstream get_the_address;
+    std::string parentId;
+    std::string childId;
+    get_the_address.str("");
+    get_the_address << currentNode;
+    parentId =  get_the_address.str();
+    parentId = parentId.erase(0, 2);
+    parentKey = (currentNode->key == "")?"Root":currentNode->key;
+    parentKey = (currentNode->isWord)?parentKey + "(" + std::to_string(currentNode->count) + ")":parentKey;
+    (*listNodes) << "\"" <<  parentId << "\" [label=\"" << parentKey << "\"];\n";
+    for(int i = 0; i < currentNode->children.size(); i++){
+        child = currentNode->children[i];
+        get_the_address.str(""); 
+        get_the_address << child;
+        childId =  get_the_address.str();
+        childId = childId.erase(0, 2);
+        if(child != nullptr){
+            parentKey = (currentNode->key == "")?"Root":currentNode->key;
+            (*relationships) << "\"" << parentId << "\"   -> " << "\"" << childId << "\" ;\n";
+            visualize(listNodes, relationships, child);
+        } 
+    }
+    return;
 }
 /*
  * Public Functions
 */
 
 Trie::Trie(){
-    this->root = new Node("root");
+    this->root = new Node();
+
 }
 
 Trie::~Trie(){
@@ -88,7 +149,7 @@ Trie::~Trie(){
 }
 
 void Trie::insert(std::string data){
-    this->root = this->insert(data, this->root);
+    this->insert(this->root, data);
 }
 
 
@@ -114,8 +175,14 @@ bool Trie::remove(std::string data){
 
 void Trie::visualize(std::string filename){
     std::ofstream output_file(filename);
+    std::ostringstream listNodes;
+    std::ostringstream relationships;
     //std::cout << "digraph g {" << std::endl;
     output_file << "digraph g { \n";
-    this->visualize(&output_file, this->root);
+    this->visualize(&listNodes, &relationships, this->root);
+    output_file << listNodes.str() << relationships.str();
+    output_file << "}";
     output_file.close();
+
+    
 }

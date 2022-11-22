@@ -1,3 +1,6 @@
+#ifndef NODE_H
+#define NODE_H
+
 #include <string>
 #include <vector>
 
@@ -17,3 +20,4 @@ class Node{
         friend class Trie;
         friend class Trie0;
 };
+#endif
