@@ -1,4 +1,5 @@
 #include "trie.h"
+
 #include <string>
 #include <iostream>
 #include <stdlib.h>
@@ -166,7 +167,7 @@ void Trie::postorder(std::ostream& os){
 }
 
 bool Trie::search(std::string data){
-
+    this->search(data, this->root);
 }
 
 bool Trie::remove(std::string data){
