@@ -6,7 +6,7 @@ class Trie
     private:
         Node* root;
 
-        void insert(Node* root, std::string entry);
+        void insert(std::string data, Node* root, int pointer = -1);
         void preorder(Node* root, std::ostream& os);
         void inorder(Node* root, std::ostream& os);
         void postorder(Node* root, std::ostream& os);
@@ -14,8 +14,7 @@ class Trie
         void destroy(Node* root);
         bool search(std::string data, Node* root);
         bool remove(std::string data, Node* root);
-        void visualize(std::ostringstream* listNodes, std::ostringstream* relationships, Node* root);
-
+        void visualize(std::ostringstream listNodes, std::ostringstream relationships, Node* root);
     public:
         Trie();
         ~Trie();
@@ -29,5 +28,5 @@ class Trie
         bool search(std::string data);
         bool remove(std::string data);
         void visualize(std::string filename);
-
 };
+

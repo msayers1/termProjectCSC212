@@ -56,6 +56,11 @@ Topic: Trie
     search must also return/show the count
   Generate a DOT file for visualization
 
+Text for Report:
+  Linda - Introduction,
+  Mike - Implementation
+  Each Member will work on the function they worked on for the Member description. 
+
   
   
 
