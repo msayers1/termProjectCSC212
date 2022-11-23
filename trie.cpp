@@ -7,6 +7,69 @@
 #include <fstream>
 #include <iomanip>
 
+void Trie::recursiveInsert(Node* root,std::string data, int pointer){
+    // If the trie is empty, return CBT
+    if (root == nullptr) {
+        root = new Node("root");
+        this->root = root;
+    }
+    // Create a temporary node that will iterate through the trie
+    Node* currentNode = root;
+    if(pointer == (data.length()-1)){
+        bool found;
+        //Make a word Node
+        for(int i = 26; i < currentNode->children.size(); i++){
+            // std::cout << entry << "/" << currentNode->children[i]->key << ": " <<  (currentNode->children[i]->key == entry) << std::endl;            
+            if(currentNode->children[i]->key == data){
+                // std::cout << entry << " " <<  currentNode->children[i]->count << std::endl;            
+                found = true;
+                currentNode = currentNode->children[i];
+                currentNode->count = currentNode->count + 1;
+            }
+        }
+        if(!found){
+            //Finish the word. 
+            Node* temp = new Node(data);
+            currentNode->children.push_back(temp);
+            currentNode = temp;
+            currentNode->isWord = true;
+            currentNode->count = 1;
+        }
+        return;
+    }
+
+    int index;
+    int intLetter;
+    char letter;
+    // Initialize the index variable, representing the location of the character
+    if(data[pointer] >= 'A' && data[pointer] <= 'Z'){
+        index = data[pointer] - 'A';
+        intLetter  = data[pointer] + 32;
+        letter = char(intLetter);
+    }
+    if(data[pointer] >= 'a' && data[pointer] <= 'z'){
+        index = data[pointer] - 'a';
+        letter = data[pointer];
+    }
+    // If the node reached is empty...
+    if (currentNode->children[index] == nullptr) {
+        // Create a new node at that index
+        currentNode->children[index] = new Node(letter);
+        // Update the node's generation - there is no generation yet. 
+        //currentNode->children[index]->generation = i;
+        // Add the node's value - the key is setup with new Node. 
+        //currentNode->children[index]->key = data[pointer];
+    }
+    // Travel to the next node
+    pointer++;
+    this->recursiveInsert(currentNode->children[index], data, pointer);
+
+    // Mark the last letter as the end of a word 
+    
+    //std::cout << entry << " was entered into the trie." << std::endl;
+    return;
+}
+
 // Inserts an std::string into the trie
 void Trie::insert(Node* root, std::string entry){
     // If the trie is empty, return CBT
@@ -148,6 +211,11 @@ Trie::Trie(){
 Trie::~Trie(){
 
 }
+
+void Trie::recursiveInsert(std::string data){
+    this->recursiveInsert(this->root, data);
+}
+
 
 void Trie::insert(std::string data){
     this->insert(this->root, data);

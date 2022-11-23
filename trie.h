@@ -6,6 +6,7 @@ class Trie
     private:
         Node* root;
 
+        void recursiveInsert(Node* root, std::string data, int pointer = 0);
         void insert(Node* root, std::string entry);
         void preorder(Node* root, std::ostream& os);
         void inorder(Node* root, std::ostream& os);
@@ -20,6 +21,7 @@ class Trie
         Trie();
         ~Trie();
 
+        void recursiveInsert(std::string data);
         void insert(std::string data);
         
         void preorder(std::ostream& os = std::cout);

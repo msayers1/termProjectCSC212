@@ -18,6 +18,5 @@ class Node{
         Node(char data);
 
         friend class Trie;
-        friend class Trie0;
 };
 #endif
