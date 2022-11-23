@@ -163,20 +163,19 @@ bool Trie::search(std::string data, Node* root){
         if(data[i] >= 'A' && data[i] <= 'Z'){
             index = data[i] - 'A';
         }
-        if(entry[i] >= 'a' && entry[i] <= 'z'){
-            index = entry[i] - 'a';
+        if(data[i] >= 'a' && data[i] <= 'z'){
+            index = data[i] - 'a';
         }
-        
-        // 
+        // if current node is not valid
         if (currentNode == nullptr){
             return 0; 
-          else{
+        }else{
               // move to next char
-                currentNode->count = currentNode->count + 1;
+                currentNode = currentNode->children[i];
+                // also add to counter 
+                currentNode-> count = currentNode->count + 1;
             }
-          }
-               
-   return (currentNode ->
+          }  
 }
 
 bool Trie::remove(std::string data, Node* root){
