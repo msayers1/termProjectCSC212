@@ -270,13 +270,13 @@ void Trie::insert(std::string data){
 
 
 void Trie::preorder(std::ostream& os){
-     this->preorder(this->root, data);
+     this->preorder(this->root, os);
     }
 void Trie::inorder(std::ostream& os){
-     this->inorder(this->root, data);
+     this->inorder(this->root, os);
     }
 void Trie::postorder(std::ostream& os){
-     this->postorder(this->root, data);
+     this->postorder(this->root, os);
     }
 
 bool Trie::search(std::string data){
