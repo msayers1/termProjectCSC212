@@ -133,12 +133,45 @@ void Trie::insert(Node* root, std::string entry){
 }
 
 void Trie::preorder(Node* root, std::ostream& os){
+    Node* currentNode = root;
+    Node*child;
+    for(int i = 0; i < currentNode->children.size(); i++){
+        child = currentNode->children[i];
+        if(child != nullptr){
+            return;
+        }
+        std::cout << child << " ";
+        preorder(child->left);
+        preorder(child->right);
+    }
 }
 
 void Trie::inorder(Node* root, std::ostream& os){
+    Node* currentNode = root;
+    Node*child;
+    for(int i = 0; i < currentNode->children.size(); i++){
+        child = currentNode->children[i];
+        if(child != nullptr){
+            return;
+        }
+        inorder(child->left, os);
+        std::cout << child << " ";
+        preorder(child->right);
+    }
 }
 
 void Trie::postorder(Node* root, std::ostream& os){
+    Node* currentNode = root;
+    Node*child;
+    for(int i = 0; i < currentNode->children.size(); i++){
+        child = currentNode->children[i];
+        if(child != nullptr){
+            return;
+        }
+        inorder(child->left);
+        preorder(child->right);
+        std::cout << child << " ";
+    }
 }
 
 void Trie::destroy(Node* root){
@@ -237,16 +270,14 @@ void Trie::insert(std::string data){
 
 
 void Trie::preorder(std::ostream& os){
-
-}
-
+     this->preorder(this->root, data);
+    }
 void Trie::inorder(std::ostream& os){
-
-}
-
+     this->inorder(this->root, data);
+    }
 void Trie::postorder(std::ostream& os){
-
-}
+     this->postorder(this->root, data);
+    }
 
 bool Trie::search(std::string data){
     this->search(data, this->root);
