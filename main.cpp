@@ -12,39 +12,24 @@
 void readFile(std::string filename, std::vector<std::string>*wordList);
 
 int main(int argc, char* argv[]){
-    // Trie *TrieTree = new Trie();
-    // Trie *TrieTree2 = new Trie();
+    Trie *TrieTree = new Trie();
+    Trie *TrieTree2 = new Trie();
     Trie *TrieTree3 = new Trie();
+    Trie *TrieTree4 = new Trie();
+    Trie *TrieTree5 = new Trie();
+    Trie *TrieTree6 = new Trie();
 
-    // std::string input;
-    // std::vector<std::string> wordList;
-    // readFile("scrabbleWords.txt", &wordList); 
-    // for(int i = 0; i < wordList.size(); i++){
-    //     //std::cout << wordList[i] << std::endl;
-    //     TrieTree->insert(wordList[i]);
-    // }
-    
-
-    // std::vector<std::string> wordList2;
-    // readFile("visualizationWordList.txt", &wordList2); 
-    // for(int i = 0; i < wordList2.size(); i++){
-    //     //std::cout << wordList[i] << std::endl;
-    //     TrieTree2->insert(wordList2[i]);
-    // }
-    
-    // TrieTree2->visualize("graph1.dot");
-    // bool running = true;
-    // bool result = false;
-    
-    std::vector<std::string> wordList3;
-    readFile("visualizationWordList.txt", &wordList3); 
-    for(int i = 0; i < wordList3.size(); i++){
+    std::string input;
+    std::vector<std::string> wordList;
+    readFile("scrabbleWords.txt", &wordList); 
+    for(int i = 0; i < wordList.size(); i++){
         //std::cout << wordList[i] << std::endl;
-        TrieTree3->recursiveInsert(wordList3[i]);
+        TrieTree->insert(wordList[i]);
     }
     
-    TrieTree3->visualize("graph_recursive.dot");
-
+  bool running = true;
+    bool result = false;
+    
     // while(running == true){
     //     std::cout << "\nThis Program will take an input of a word." << std::endl;
     //     std::cout << "Then look it up in the Scrabble Dictionary." << std::endl;
@@ -60,6 +45,46 @@ int main(int argc, char* argv[]){
     //         std::cout << "\nYour word is not a Scrabble word.";
     //     }
     // }
+
+    //Word: 33
+    std::vector<std::string> wordList2;
+    readFile("visualizationWordList.txt", &wordList2); 
+    for(int i = 0; i < wordList2.size(); i++){
+        //std::cout << wordList[i] << std::endl;
+        TrieTree2->insert(wordList2[i]);
+    }
+    
+    TrieTree2->visualize("graph_Visualization.dot");
+    
+    //Words: 222050
+    std::vector<std::string> wordList3;
+    readFile("MobeyDick.txt", &wordList3); 
+    for(int i = 0; i < wordList3.size(); i++){
+        //std::cout << wordList[i] << std::endl;
+        TrieTree3->recursiveInsert(wordList3[i]);
+    }
+    
+    // TrieTree3->visualize("graph_MobeyDick.dot");
+
+    //Words: 12972
+    std::vector<std::string> wordList4;
+    readFile("wordledictionarylist.txt", &wordList4); 
+    for(int i = 0; i < wordList4.size(); i++){
+        //std::cout << wordList[i] << std::endl;
+        TrieTree4->recursiveInsert(wordList4[i]);
+    }
+    
+    // TrieTree4->visualize("graph_wordle.dot");
+
+    //Words: 515572
+    std::vector<std::string> wordList4;
+    readFile("dictionary.txt", &wordList4); 
+    for(int i = 0; i < wordList4.size(); i++){
+        //std::cout << wordList[i] << std::endl;
+        TrieTree4->recursiveInsert(wordList4[i]);
+    }
+    
+    // TrieTree4->visualize("graph_dictionary.dot");
 }
 
 

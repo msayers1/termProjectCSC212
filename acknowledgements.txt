@@ -24,4 +24,6 @@ Character set encoding: UTF-8
 Produced by: Daniel Lazarus, Jonesey, and David Widger
 
 
-https://gist.github.com/dracos/dd0668f281e685bad51479e5acaadb93 wordle dictionary file list 
+https://gist.github.com/dracos/dd0668f281e685bad51479e5acaadb93 wordle dictionary file list source 
+
+https://github.com/dwyl/english-words/blob/master/words.txt dictionary file list source
