@@ -151,7 +151,6 @@ bool Trie::search(std::string data, Node* root){
     if (root == nullptr) {
         std::cout << "Trie empty." << std::endl;
         return false;
-    }
     
      // Create a temporary node that will iterate through the trie
     Node* currentNode = root;
@@ -171,11 +170,13 @@ bool Trie::search(std::string data, Node* root){
             return 0; 
         }else{
               // move to next char
-                currentNode = currentNode->children[i];
+                currentNode = currentNode->children[index];
                 // also add to counter 
                 currentNode-> count = currentNode->count + 1;
             }
           }  
+        // if its end of the string, hard coded 
+    return ( currentNode -> '/0' && currentNode != nullpltr) ; 
 }
 
 bool Trie::remove(std::string data, Node* root){
