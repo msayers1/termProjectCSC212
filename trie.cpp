@@ -146,10 +146,8 @@ void Trie::destroy(Node* root){
 }
 
 bool Trie::search(std::string data, Node* root){
-    //
-    int location = 0; 
     
-    // If the trie is empty
+    // If the root(head) is empty
     if (root == nullptr) {
         std::cout << "Trie empty." << std::endl;
         return false;
@@ -159,10 +157,26 @@ bool Trie::search(std::string data, Node* root){
     Node* currentNode = root;
     
     // loops through data string 
-    for(int i = 0; i < data.length(); i++){}
+    for(int i = 0; i < data.length(); i++){
         
-    
-   return true;
+        // Initialize the index variable, representing the location of the character
+        if(data[i] >= 'A' && data[i] <= 'Z'){
+            index = data[i] - 'A';
+        }
+        if(entry[i] >= 'a' && entry[i] <= 'z'){
+            index = entry[i] - 'a';
+        }
+        
+        // 
+        if (currentNode == nullptr){
+            return 0; 
+          else{
+              // move to next char
+                currentNode->count = currentNode->count + 1;
+            }
+          }
+               
+   return (currentNode ->
 }
 
 bool Trie::remove(std::string data, Node* root){
