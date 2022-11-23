@@ -176,7 +176,7 @@ bool Trie::search(std::string data, Node* root){
             }
           }  
         // if its end of the string, hard coded 
-    return ( currentNode -> '/0' && currentNode != nullpltr) ; 
+    return ( currentNode -> '/0' && currentNode != nullptr) ; 
 }
 
 bool Trie::remove(std::string data, Node* root){
