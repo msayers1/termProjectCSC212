@@ -178,12 +178,15 @@ void Trie::destroy(Node* root){
 
 }
 
-bool Trie::search(std::string data, Node* root){
+int Trie::search(std::string data, Node* root){
+    
+    int count; 
     
     // If the root(head) is empty
     if (root == nullptr) {
         std::cout << "Trie empty." << std::endl;
         return false;
+    }
     
      // Create a temporary node that will iterate through the trie
     Node* currentNode = root;
@@ -204,12 +207,19 @@ bool Trie::search(std::string data, Node* root){
         }else{
               // move to next char
                 currentNode = currentNode->children[index];
-                // also add to counter 
-                currentNode-> count = currentNode->count + 1;
+                
             }
-          }  
-        // if its end of the string, hard coded 
-    return ( currentNode -> '/0' && currentNode != nullptr) ; 
+          }
+        }
+   // see if the full word is there 
+    if (i == (data.length() - 1)){
+        for(int i = 26; i < currentNode->children.size(); i++){
+                if(currentNode->children[i] == data){
+                    found = true;
+                    count += currentNode (root -> children[i]);  
+                }
+        }
+   return count; 
 }
 
 bool Trie::remove(std::string data, Node* root){
