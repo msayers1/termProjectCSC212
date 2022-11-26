@@ -222,12 +222,18 @@ int Trie::search(std::string data, Node* root){
    return count; 
 }
 
+// Removes a word from the trie given a key and the trie's root
 bool Trie::remove(std::string data, Node* root){
+    // If the trie is empty
     if(!root){
+        // Return false, key not present
         return false;
     }
+    // Create temporary traversal node starting at the final letter of the key
     Node* currentNode = root;
+    // Loop through the length of the key
     for(int i = 0; i < data.length(); i++){
+        // Initialize the index variable, representing which child the next node is
         int index;
         if(data[i] >= 'A' && data[i] <= 'Z'){
             index = data[i] - 'A';
@@ -235,13 +241,19 @@ bool Trie::remove(std::string data, Node* root){
         if(data[i] >= 'a' && data[i] <= 'z'){
             index = data[i] - 'a';
         }
+        // If the next character of the key is not in the trie...
         if (currentNode->children[index] == NULL) {
+            // Return false, was not able to remove, key not present
             return false;
         }
+        // Traverse to the next node
         currentNode = currentNode->children[index];
     }
+    // Mark the current node (the final letter in the key) to no longer be a word
     currentNode->isWord == false;
+    // Loop through the key backwards
     for(int i = data.length() - 1; i >= 0; i++){
+        // Initialize the index variable, representing which child the next node is
         int index;
         if(data[i] >= 'A' && data[i] <= 'Z'){
             index = data[i] - 'A';
@@ -249,16 +261,24 @@ bool Trie::remove(std::string data, Node* root){
         if(data[i] >= 'a' && data[i] <= 'z'){
             index = data[i] - 'a';
         }
+        // Decrement the number of words this node is a part of
         currentNode->numWordsIn--;
+        // If the node doesn't have any children...
         if(currentNode->numChildren == 0){
+            // Create new pointer, removeNode, to delete currentNode
             Node* removeNode = currentNode;
+            // Traverse to the next node
             currentNode = currentNode->children[index];
+            // Delete removeNode entirely
             delete removeNode;
         }
+        // Otherwise...
         else{
+            // Traverse to the next node
             currentNode = currentNode->children[index];
         }
     }
+    // Return true, removal was successful
     return true;
 }
 
