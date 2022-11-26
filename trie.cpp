@@ -223,7 +223,43 @@ int Trie::search(std::string data, Node* root){
 }
 
 bool Trie::remove(std::string data, Node* root){
-
+    if(!root){
+        return false;
+    }
+    Node* currentNode = root;
+    for(int i = 0; i < data.length(); i++){
+        int index;
+        if(data[i] >= 'A' && data[i] <= 'Z'){
+            index = data[i] - 'A';
+        }
+        if(data[i] >= 'a' && data[i] <= 'z'){
+            index = data[i] - 'a';
+        }
+        if (currentNode->children[index] == NULL) {
+            return false;
+        }
+        currentNode = currentNode->children[index];
+    }
+    currentNode->isWord == false;
+    for(int i = data.length() - 1; i >= 0; i++){
+        int index;
+        if(data[i] >= 'A' && data[i] <= 'Z'){
+            index = data[i] - 'A';
+        }
+        if(data[i] >= 'a' && data[i] <= 'z'){
+            index = data[i] - 'a';
+        }
+        currentNode->numWordsIn--;
+        if(currentNode->numChildren == 0){
+            Node* removeNode = currentNode;
+            currentNode = currentNode->children[index];
+            delete removeNode;
+        }
+        else{
+            currentNode = currentNode->children[index];
+        }
+    }
+    return true;
 }
 
 void Trie::visualize(std::ostringstream *listNodes, std::ostringstream *relationships, Node* root){
