@@ -15,14 +15,18 @@ void Trie::recursiveInsert(Node* root,std::string data, int pointer){
     }
     // Create a temporary node that will iterate through the trie
     Node* currentNode = root;
+    // if the end of the word...
     if(pointer == (data.length()-1)){
         bool found;
         //Make a word Node
         for(int i = 26; i < currentNode->children.size(); i++){
             // std::cout << entry << "/" << currentNode->children[i]->key << ": " <<  (currentNode->children[i]->key == entry) << std::endl;            
+            //checks to see if the key is the full word.
             if(currentNode->children[i]->key == data){
                 // std::cout << entry << " " <<  currentNode->children[i]->count << std::endl;            
+                //sets found to true;
                 found = true;
+                //
                 currentNode = currentNode->children[i];
                 currentNode->count = currentNode->count + 1;
             }
@@ -89,7 +93,7 @@ void Trie::insert(Node* root, std::string entry){
         if(entry[i] >= 'a' && entry[i] <= 'z'){
             index = entry[i] - 'a';
         }
-        // If the node reached is empty...
+        // If the node reached is empty but not the end of the word...
         if (currentNode->children[index] == nullptr && (i != (entry.length() - 1))) {
             // Create a new node at that index
             currentNode->children[index] = new Node(entry[i]);
@@ -98,26 +102,37 @@ void Trie::insert(Node* root, std::string entry){
             // Add the node's value - the key is setup with new Node. 
             //currentNode->children[index]->key = entry[i];
         } 
-        
+        //if the end of the word...
         if (i == (entry.length() - 1)){
+            //set up flag to tell if the word is found. 
             bool found = false;
             int index;
             //std::cout << entry << "number of children of the currentNode:" << currentNode->children.size() << std::endl;
+            //Cycle through the different words at with the same first letters. 
             for(int i = 26; i < currentNode->children.size(); i++){
                 // std::cout << entry << "/" << currentNode->children[i]->key << ": " <<  (currentNode->children[i]->key == entry) << std::endl;            
+                //Checks if the key(value) is equal to the entry 
                 if(currentNode->children[i]->key == entry){
                     // std::cout << entry << " " <<  currentNode->children[i]->count << std::endl;            
+                    //Sets found to true
                     found = true;
+                    //Sets the current Node to the entry node. 
                     currentNode = currentNode->children[i];
+                    //Increments the count. 
                     currentNode->count = currentNode->count + 1;
                 }
             }
+            //Deals with if the word is not found. 
             if(!found){
-                //Finish the word. 
+                //creates a node for the whole word
                 Node* temp = new Node(entry);
+                //pushes it on the end of the vector;
                 currentNode->children.push_back(temp);
+                //sets the temp to current. 
                 currentNode = temp;
+                //Sets the whole word to true
                 currentNode->isWord = true;
+                //Sets count to 1. 
                 currentNode->count = 1;
             }
         } else {
