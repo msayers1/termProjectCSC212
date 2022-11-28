@@ -246,34 +246,6 @@ int Trie::search(std::string data, Node* root){
 }
 
 
-void Trie::timingFunc(std::string data, Node* root) {
-    
-    float value;
-    unsigned long cStart , cEnd ;
-    
-    // checks time for search function performance
-    if (search(root, entry) {
-       cStart = std::clock();
-        value = search(root, entry);
-       cEnd = std::clock();
-
-    }
-        // checks time for insert function peformance
-    else if (insert(data, root)) {
-        cStart = std::clock();
-        value = insert(root, entry);
-        cEnd = std::clock();
-       
-    else{
-        std::cout << "Please enter a valid function" << std::endl;
-
-    }
-
-    float time = 1.0 (cEnd - cStart) / CLOCKS_PER_SEC;
-        
-    std::cout << std::fixed << std::setprecision(4) << time << " Output: " << value << std::endl;
-}
-
 // Removes a word from the trie given a key and the trie's root
 bool Trie::remove(std::string data, Node* root){
     // If the trie is empty
@@ -427,3 +399,31 @@ void Trie::visualize(std::string filename){
 
     
 }
+void Trie::timingFunc(std::string data, Node* root) {
+    
+    float value;
+    unsigned long cStart , cEnd ;
+    
+    // checks time for search function performance
+    if (search(root, entry) {
+       cStart = std::clock();
+        value = search(root, entry);
+       cEnd = std::clock();
+
+    }
+        // checks time for insert function peformance
+    else if (insert(data, root)) {
+        cStart = std::clock();
+        value = insert(root, entry);
+        cEnd = std::clock();
+       
+    else{
+        std::cout << "Please enter a valid function" << std::endl;
+
+    }
+
+    float time = 1.0 (cEnd - cStart) / CLOCKS_PER_SEC;
+        
+    std::cout << std::fixed << std::setprecision(4) << time << " Output: " << value << std::endl;
+}
+
