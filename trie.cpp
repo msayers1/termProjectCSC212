@@ -195,7 +195,21 @@ void Trie::destroy(Node* root){
 
 int Trie::search(std::string data, Node* root){
     
-    int count; 
+    int count = 0;    
+    int index = 0;
+   
+    for(int i = 0; i < data.size(); i++){
+        // call insert function containing all words 
+        insert(data[i]);
+    }
+     
+    // see if the full word is there 
+    if (i == (data.length() - 1)){
+        for(int i = 26; i < currentNode->children.size(); i++){
+               if(root -> children[i])
+                   count += root -> children[i]; 
+        }
+    }
     
     // If the root(head) is empty
     if (root == nullptr) {
@@ -216,6 +230,7 @@ int Trie::search(std::string data, Node* root){
         if(data[i] >= 'a' && data[i] <= 'z'){
             index = data[i] - 'a';
         }
+        
         // if current node is not valid
         if (currentNode == nullptr){
             return 0; 
@@ -224,16 +239,8 @@ int Trie::search(std::string data, Node* root){
                 currentNode = currentNode->children[index];
                 
             }
-          }
         }
-   // see if the full word is there 
-    if (i == (data.length() - 1)){
-        for(int i = 26; i < currentNode->children.size(); i++){
-                if(currentNode->children[i] == data){
-                    found = true;
-                    count += currentNode (root -> children[i]);  
-                }
-        }
+    }
    return count; 
 }
 
