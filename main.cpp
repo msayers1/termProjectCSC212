@@ -12,39 +12,100 @@
 void readFile(std::string filename, std::vector<std::string>*wordList);
 
 int main(int argc, char* argv[]){
-    // Trie *TrieTree = new Trie();
-    // Trie *TrieTree2 = new Trie();
+    Trie *TrieTree = new Trie();
+    Trie *TrieTree2 = new Trie();
     Trie *TrieTree3 = new Trie();
+    Trie *TrieTree4 = new Trie();
+    Trie *TrieTree5 = new Trie();
+    Trie *TrieTree6 = new Trie();
+    Trie *TrieTree7 = new Trie();
+    Trie *TrieTree8 = new Trie();
 
-    // std::string input;
-    // std::vector<std::string> wordList;
-    // readFile("scrabbleWords.txt", &wordList); 
-    // for(int i = 0; i < wordList.size(); i++){
-    //     //std::cout << wordList[i] << std::endl;
-    //     TrieTree->insert(wordList[i]);
-    // }
     
 
-    // std::vector<std::string> wordList2;
-    // readFile("visualizationWordList.txt", &wordList2); 
-    // for(int i = 0; i < wordList2.size(); i++){
-    //     //std::cout << wordList[i] << std::endl;
-    //     TrieTree2->insert(wordList2[i]);
-    // }
+    //Word: 33
+    std::vector<std::string> wordList2;
+    readFile("visualizationWordList.txt", &wordList2); 
+    for(int i = 0; i < wordList2.size(); i++){
+        //std::cout << wordList[i] << std::endl;
+        TrieTree2->insert(wordList2[i]);
+    }
+
+    int count;
+
+    count = TrieTree2->search("Middle");
+    std::cout << "The word middle appears three times in the list and the test result: " << ((count == 3)?"True":"False") << std::endl;
+
+    count = TrieTree2->search("January");
+    std::cout << "The word middle appears three times in the list and the test result: " << ((count == 4)?"True":"False") << std::endl;
+
+    count = TrieTree2->search("Macintosh");
+    std::cout << "The word middle appears three times in the list and the test result: " << ((count == 0)?"True":"False") << std::endl;
+
+
+    TrieTree2->visualize("graph_Visualization.dot");
     
-    // TrieTree2->visualize("graph1.dot");
-    // bool running = true;
-    // bool result = false;
     
+
+    //Words: 12972
     std::vector<std::string> wordList3;
-    readFile("visualizationWordList.txt", &wordList3); 
+    readFile("wordledictionarylist.txt", &wordList3); 
     for(int i = 0; i < wordList3.size(); i++){
         //std::cout << wordList[i] << std::endl;
-        TrieTree3->recursiveInsert(wordList3[i]);
+        TrieTree3->insert(wordList3[i]);
     }
     
-    TrieTree3->visualize("graph_recursive.dot");
+    for(int i = 0; i < wordList3.size(); i++){
+        //std::cout << wordList[i] << std::endl;
+        TrieTree4->recursiveInsert(wordList3[i]);
+    }
+    
 
+    // Visualization Graph is too large.
+    // TrieTree4->visualize("graph_wordle.dot");
+
+    //Words: 222050
+    std::vector<std::string> wordList4;
+    readFile("MobeyDick.txt", &wordList4); 
+    for(int i = 0; i < wordList4.size(); i++){
+        //std::cout << wordList[i] << std::endl;
+        TrieTree5->insert(wordList4[i]);
+    }
+
+    for(int i = 0; i < wordList4.size(); i++){
+        //std::cout << wordList[i] << std::endl;
+        TrieTree6->recursiveInsert(wordList4[i]);
+    }
+
+    // Visualization Graph is too large.
+    // TrieTree3->visualize("graph_MobeyDick.dot");
+
+    //Words: 515572
+    std::vector<std::string> wordList5;
+    readFile("dictionary.txt", &wordList5); 
+    for(int i = 0; i < wordList5.size(); i++){
+        //std::cout << wordList[i] << std::endl;
+        TrieTree7->insert(wordList5[i]);
+    }
+    
+    for(int i = 0; i < wordList5.size(); i++){
+        //std::cout << wordList[i] << std::endl;
+        TrieTree8->insert(wordList5[i]);
+    }
+    // Visualization Graph is too large.
+    // TrieTree4->visualize("graph_dictionary.dot");
+
+    std::string input;
+    std::vector<std::string> wordList;
+    readFile("scrabbleWords.txt", &wordList); 
+    for(int i = 0; i < wordList.size(); i++){
+        //std::cout << wordList[i] << std::endl;
+        TrieTree->insert(wordList[i]);
+    }
+    
+  bool running = true;
+    bool result = false;
+    
     // while(running == true){
     //     std::cout << "\nThis Program will take an input of a word." << std::endl;
     //     std::cout << "Then look it up in the Scrabble Dictionary." << std::endl;
