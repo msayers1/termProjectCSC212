@@ -399,7 +399,7 @@ void Trie::visualize(std::string filename){
 
     
 }
-void Trie::timingFunc(std::string data, Node* root) {
+void Trie::timingFunc(std::string data, Node* root, int pointer) {
     
     float value;
     unsigned long cStart , cEnd ;
@@ -417,6 +417,12 @@ void Trie::timingFunc(std::string data, Node* root) {
         value = insert(root, entry);
         cEnd = std::clock();
        
+        
+    else if (recursiveInsert(root, data, pointer){
+        cStart = std::clock();
+        value = recursiveInsert(root, data, pointer);
+        cEnd = std::clock();
+     
     else{
         std::cout << "Please enter a valid function" << std::endl;
 
