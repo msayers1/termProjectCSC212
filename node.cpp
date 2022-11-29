@@ -7,6 +7,7 @@
         this->key = "";
         std::vector<Node*>temp(26, nullptr);
         this->children = temp;  
+        this->numChildren = 0;
         this->count = 0;
         this->isWord = false;
     };
@@ -16,6 +17,7 @@
         this->key = string;
         std::vector<Node*>temp(26, nullptr);
         this->children = temp;   
+        this->numChildren = 0;
         this->count = 0;
         this->isWord = false;
     };
