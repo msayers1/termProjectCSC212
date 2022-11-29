@@ -205,53 +205,47 @@ void Trie::destroy(Node* root){
 
 int Trie::search(std::string data, Node* root){
     
-//     int count = 0;    
-//     int index = 0;
-   
-//     for(int i = 0; i < data.size(); i++){
-//         // call insert function containing all words 
-//         insert(data[i]);
-//     }
+    int count = 0;    
      
-//     // see if the full word is there 
-//     if (i == (data.length() - 1)){
-//         for(int i = 26; i < currentNode->children.size(); i++){
-//                if(root -> children[i])
-//                    count += root -> children[i]; 
-//         }
-//     }
-    
 //     // If the root(head) is empty
-//     if (root == nullptr) {
-//         std::cout << "Trie empty." << std::endl;
-//         return false;
-//     }
+    if (root == nullptr) {
+        std::cout << "Trie empty." << std::endl;
+        return false;
+    }
     
 //      // Create a temporary node that will iterate through the trie
-//     Node* currentNode = root;
+    Node* currentNode = root;
     
 //     // loops through data string 
-//     for(int i = 0; i < data.length(); i++){
+    for(int i = 0; i < data.length(); i++){
+        int index = 0; 
         
 //         // Initialize the index variable, representing the location of the character
-//         if(data[i] >= 'A' && data[i] <= 'Z'){
-//             index = data[i] - 'A';
-//         }
-//         if(data[i] >= 'a' && data[i] <= 'z'){
-//             index = data[i] - 'a';
-//         }
+        if(data[i] >= 'A' && data[i] <= 'Z'){
+            index = data[i] - 'A';
+        }
+        if(data[i] >= 'a' && data[i] <= 'z'){
+            index = data[i] - 'a';
+        }
         
 //         // if current node is not valid
-//         if (currentNode == nullptr){
-//             return 0; 
-//         }else{
+        if (currentNode == nullptr){
+            return 0; 
+        }else{
 //               // move to next char
-//                 currentNode = currentNode->children[index];
+            currentNode = currentNode->children[index];
+                 }
+            }
+        
+        if (i == (data.length() - 1)){
+            
+            for(int i = 26; i < currentNode->children.size(); i++){
                 
-//             }
-//         }
-//     }
-//    return count; 
+                count += root -> children[i]; 
+        }
+    }
+}
+    return count; 
 }
 
 
