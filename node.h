@@ -8,6 +8,7 @@ class Node{
     private:
         std::string key;
         std::vector<Node*> children;
+        int numChildren;
         int count;
         bool isWord;
 
