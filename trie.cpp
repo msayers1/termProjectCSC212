@@ -35,6 +35,7 @@ void Trie::recursiveInsert(Node* root,std::string data, int pointer){
             //Finish the word. 
             Node* temp = new Node(data);
             currentNode->children.push_back(temp);
+            currentNode->numChildren++;
             currentNode = temp;
             currentNode->isWord = true;
             currentNode->count = 1;
@@ -59,6 +60,8 @@ void Trie::recursiveInsert(Node* root,std::string data, int pointer){
     if (currentNode->children[index] == nullptr) {
         // Create a new node at that index
         currentNode->children[index] = new Node(letter);
+        // Increment the number of children counter
+        currentNode->numChildren++;
         // Update the node's generation - there is no generation yet. 
         //currentNode->children[index]->generation = i;
         // Add the node's value - the key is setup with new Node. 
@@ -98,6 +101,8 @@ void Trie::insert(Node* root, std::string entry){
         if (currentNode->children[index] == nullptr && (i != (entry.length() - 1))) {
             // Create a new node at that index
             currentNode->children[index] = new Node(entry[i]);
+            // Increment the number of children counter
+            currentNode->numChildren++;
             // Update the node's generation - there is no generation yet. 
             //currentNode->children[index]->generation = i;
             // Add the node's value - the key is setup with new Node. 
@@ -129,6 +134,8 @@ void Trie::insert(Node* root, std::string entry){
                 Node* temp = new Node(entry);
                 //pushes it on the end of the vector;
                 currentNode->children.push_back(temp);
+                // Increment the number of children counter
+                currentNode->numChildren++;
                 //sets the temp to current. 
                 currentNode = temp;
                 //Sets the whole word to true
@@ -282,7 +289,7 @@ bool Trie::remove(std::string data, Node* root){
             index = data[i] - 'a';
         }
         // If not on the second to last letter of key and the next character of the key is not in the trie...
-        if((i != data.length() - 1) && (currentNodes[i]->children[index] == NULL)) {
+        if((i != data.length() - 1) && (currentNodes[i]->children[index] == nullptr)) {
             // Return false, was not able to remove, key not present
             return false;
         }
@@ -303,24 +310,37 @@ bool Trie::remove(std::string data, Node* root){
         }
     }
     // Create a removeNode to prevent memory leaks
-    Node* removeNode = currentNodes[data.length()];
+    Node* removeNode = currentNodes[data.length() - 1]->children[26];
+    // Set both the pointer to the node and the node within the currentNodes vector to nullptr
+    currentNodes[data.length() - 1]->children[26] = nullptr;
     currentNodes[data.length()] = nullptr;
     // Delete the node containing the word
     delete removeNode;
-    // Resize the second to last letter's children data member to once again only hold the 26 instead of 27
-    currentNodes[data.length()-1]->children.resize(26);
+    // Pop back the children vector to decrement the size back to 26
+    currentNodes[data.length()-1]->children.pop_back();
+    // Decrement the number of children of the second to last letter
+    currentNodes[data.length()-1]->numChildren--;
     // Loop through the key backwards
     for(int i = data.length()-1; i >= 1; i--){
-        // Decrement the number of words this node is a part of
-        // currentNode->numWordsIn--;
         // If the node doesn't have any children...
-        // if(currentNode->numChildren == 0){
-        if(currentNodes[i]->children.empty()){
+        if(currentNodes[i]->numChildren == 0){
             // Delete the node as it is not needed in any other word
-            removeNode = currentNodes[i];
+            int index;
+            char c = currentNodes[i]->key.at(0);
+            if(c >= 'A' && c <= 'Z'){
+                index = c - 'A';
+            }
+            if(c >= 'a' && c <= 'z'){
+                index = c - 'a';
+            }
             currentNodes[i] = nullptr;
+            removeNode = currentNodes[i - 1]->children[index];
+            currentNodes[i - 1]->children[index] = nullptr;
             delete removeNode;
+            // Decrement the number of children the node before the current has
+            currentNodes[i-1]->numChildren--;
         }
+        // Otherwise, the node is still needed in the trie
         else{
             // Return true, removal was successful
             return true;
@@ -416,7 +436,7 @@ int Trie::search(std::string data){
 }
 
 bool Trie::remove(std::string data){
-    this->remove(data, this->root);
+    return this->remove(data, this->root);
 }
 
 void Trie::visualize(std::string filename){
