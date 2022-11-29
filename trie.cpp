@@ -35,6 +35,7 @@ void Trie::recursiveInsert(Node* root,std::string data, int pointer){
             //Finish the word. 
             Node* temp = new Node(data);
             currentNode->children.push_back(temp);
+            currentNode->numChildren++;
             currentNode = temp;
             currentNode->isWord = true;
             currentNode->count = 1;
@@ -59,6 +60,8 @@ void Trie::recursiveInsert(Node* root,std::string data, int pointer){
     if (currentNode->children[index] == nullptr) {
         // Create a new node at that index
         currentNode->children[index] = new Node(letter);
+        // Increment the number of children counter
+        currentNode->numChildren++;
         // Update the node's generation - there is no generation yet. 
         //currentNode->children[index]->generation = i;
         // Add the node's value - the key is setup with new Node. 
@@ -98,6 +101,8 @@ void Trie::insert(Node* root, std::string entry){
         if (currentNode->children[index] == nullptr && (i != (entry.length() - 1))) {
             // Create a new node at that index
             currentNode->children[index] = new Node(entry[i]);
+            // Increment the number of children counter
+            currentNode->numChildren++;
             // Update the node's generation - there is no generation yet. 
             //currentNode->children[index]->generation = i;
             // Add the node's value - the key is setup with new Node. 
@@ -129,6 +134,8 @@ void Trie::insert(Node* root, std::string entry){
                 Node* temp = new Node(entry);
                 //pushes it on the end of the vector;
                 currentNode->children.push_back(temp);
+                // Increment the number of children counter
+                currentNode->numChildren++;
                 //sets the temp to current. 
                 currentNode = temp;
                 //Sets the whole word to true
