@@ -13,7 +13,7 @@ class Trie
         void postorder(Node* root, std::ostream& os);
 
         void destroy(Node* root);
-        bool search(std::string data, Node* root);
+        int search(std::string data, Node* root);
         bool remove(std::string data, Node* root);
         void visualize(std::ostringstream* listNodes, std::ostringstream* relationships, Node* root);
 
@@ -28,7 +28,7 @@ class Trie
         void inorder(std::ostream& os = std::cout);
         void postorder(std::ostream& os = std::cout);
 
-        bool search(std::string data);
+        int search(std::string data);
         bool remove(std::string data);
         void visualize(std::string filename);
 
