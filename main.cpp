@@ -67,6 +67,11 @@ int main(int argc, char* argv[]){
     float time = 1.0 * (cEnd - cStart) / CLOCKS_PER_SEC;
     insertValue.push_back(time);
 
+
+    TrieTree2->ascend();
+
+    TrieTree2->descend();
+
     cStart = std::clock();
     for(int i = 0; i < wordList2.size(); i++){
         //std::cout << wordList[i] << std::endl;
@@ -169,6 +174,13 @@ int main(int argc, char* argv[]){
     visualizeValue.push_back(time);
     // Visualization Graph is too large.
     // TrieTree4->visualize("graph_dictionary.dot");
+
+    TrieTree8->destroy();
+    cStart = std::clock();
+    TrieTree8->visualize("graph_dictionary_empty.dot");
+    cEnd = std::clock();
+    time = 1.0 * (cEnd - cStart) / CLOCKS_PER_SEC;
+    visualizeValue.push_back(time);
 
     for(int i = 0; i < insertValue.size(); i++){
         std::cout << " Insert timing: " << insertValue[i] << std::endl;
