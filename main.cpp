@@ -12,6 +12,7 @@
 void readFile(std::string filename, std::vector<std::string>*wordList);
 
 int main(int argc, char* argv[]){
+    //Initializes the Trie trees for the different word list and insert function combinations. 
     Trie *TrieTree = new Trie();
     Trie *TrieTree2 = new Trie();
     Trie *TrieTree3 = new Trie();
@@ -21,75 +22,99 @@ int main(int argc, char* argv[]){
     Trie *TrieTree7 = new Trie();
     Trie *TrieTree8 = new Trie();
     Trie *TrieTree9 = new Trie();
-
+    //initializes the input. 
     std::string input;
     std::vector<std::string> wordList;
     readFile("scrabbleWords.txt", &wordList); 
     for(int i = 0; i < wordList.size(); i++){
-        //std::cout << wordList[i] << std::endl;
+        //inserts the word list for the Scrabble word check. 
         TrieTree->insert(wordList[i]);
     }
     
   bool running = true;
     bool result = false;
     
-    // while(running == true){
-    //     std::cout << "\nThis Program will take an input of a word." << std::endl;
-    //     std::cout << "Then look it up in the Scrabble Dictionary." << std::endl;
-    //     std::cout << "If the word is in the dictionary, then it will return True." << std::endl;
-    //     std::cout << "Otherwise it will return False." << std::endl;
-    //     std::cout << "What word would you like to try:";
-    //     std::cin >> input;
-    //     result = TrieTree->search(input);
-    //     if(result){
-    //         std::cout << "\nYour word is a Scrabble word.";
-            
-    //     } else {
-    //         std::cout << "\nYour word is not a Scrabble word.";
-    //     }
-    // }
-
+    while(running == true){
+        std::cout << "\nThis Program will take an input of a word." << std::endl;
+        std::cout << "Then look it up in the Scrabble Dictionary." << std::endl;
+        std::cout << "If the word is in the dictionary, then it will return True." << std::endl;
+        std::cout << "Otherwise it will return False." << std::endl;
+        std::cout << "What word would you like to try:";
+        std::cin >> input;
+        std::cout << input << std::endl;
+        if(input == "quit"){
+            running = false; 
+        }else{
+            result = TrieTree->search(input);
+            if(result > 0){
+                std::cout << "\nYour word is a Scrabble word.";
+                
+            } else {
+                std::cout << "\nYour word is not a Scrabble word.";
+            }
+        }
+        
+    }
+    // Initialize vectors for the time values. 
     std::vector<float> searchValue;
     std::vector<float> insertValue;
     std::vector<float> visualizeValue;
     std::vector<float> recursiveValue;
+    //initialize the state and stop times. 
     unsigned long cStart , cEnd ;
 
     //Word: 33
     std::vector<std::string> wordList2;
+    //Reads the file for the word list. 
     readFile("visualizationWordList.txt", &wordList2); 
+    //Starts the clock for the insert function. 
     cStart = std::clock();
     for(int i = 0; i < wordList2.size(); i++){
         //std::cout << wordList[i] << std::endl;
+        //runs the insert function. 
         TrieTree2->insert(wordList2[i]);
     }
+    //Stops the clock for the insert function. 
     cEnd = std::clock();
+    //intialize and multiplies the difference of the start and stop, divides by clocks per second. 
     float time = 1.0 * (cEnd - cStart) / CLOCKS_PER_SEC;
+    //Pushes the time value on the insert vector. 
     insertValue.push_back(time);
 
-
+    //runs the ascend function
     TrieTree2->ascend();
 
+    //runs the descend function. 
     TrieTree2->descend();
 
+    //Starts the clock for the recursive insert function. 
     cStart = std::clock();
     for(int i = 0; i < wordList2.size(); i++){
         //std::cout << wordList[i] << std::endl;
+        //runs the recursive insert function. 
         TrieTree3->recursiveInsert(wordList2[i]);
     }
+    //Stops the clock for the insert function.
     cEnd = std::clock();
+    //intialize and multiplies the difference of the start and stop, divides by clocks per second. 
     time = 1.0 * (cEnd - cStart) / CLOCKS_PER_SEC;
+    //Pushes the time value on the recursive insert vector. 
     recursiveValue.push_back(time);
 
-
+    //Starts the clock for the visualization function. 
     cStart = std::clock();
+    //runs the visualization insert function. 
     TrieTree2->visualize("graph_Visualization.dot");
+    //Stops the clock for the visualization function.
     cEnd = std::clock();
+    //intialize and multiplies the difference of the start and stop, divides by clocks per second. 
     time = 1.0 * (cEnd - cStart) / CLOCKS_PER_SEC;
+    //Pushes the time value on the visualization vector. 
     visualizeValue.push_back(time);
 
     //Words: 12972
     std::vector<std::string> wordList3;
+    //Reads the file for the word list. 
     readFile("wordledictionarylist.txt", &wordList3); 
     cStart = std::clock();
     for(int i = 0; i < wordList3.size(); i++){
@@ -215,34 +240,3 @@ void readFile(std::string filename, std::vector<std::string>*wordList){
         }
    }
  
-//     float value;
-//     unsigned long cStart , cEnd ;
-    
-//     // checks time for search function performance
-//     if (search(root, entry)) {
-//        cStart = std::clock();
-//         value = search(root, entry);
-//        cEnd = std::clock();
-
-//     }
-//         // checks time for insert function peformance
-//     else if (insert(data, root)) {
-//         cStart = std::clock();
-//         value = insert(root, entry);
-//         cEnd = std::clock();
-       
-        
-//     else if (recursiveInsert(root, data, pointer){
-//         cStart = std::clock();
-//         value = recursiveInsert(root, data, pointer);
-//         cEnd = std::clock();
-     
-//     else{
-//         std::cout << "Please enter a valid function" << std::endl;
-
-//     }
-
-//     float time = 1.0 * (cEnd - cStart) / CLOCKS_PER_SEC;
-        
-//     std::cout << std::fixed << std::setprecision(4) << time << " Output: " << value << std::endl;
-// }

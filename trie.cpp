@@ -20,6 +20,9 @@ void Trie::recursiveInsert(Node* root,std::string data, int pointer){
         bool found;
         //Make a word Node
         for(int i = 26; i < currentNode->children.size(); i++){
+            for (int x=0; x<data.length(); x++){
+                data[x] = tolower(data[x]);
+            }
             // std::cout << entry << "/" << currentNode->children[i]->key << ": " <<  (currentNode->children[i]->key == entry) << std::endl;            
             //checks to see if the key is the full word.
             if(currentNode->children[i]->key == data){
@@ -110,6 +113,9 @@ void Trie::insert(Node* root, std::string entry){
         } 
         //if the end of the word...
         if (i == (entry.length() - 1)){
+            for (int x=0; x<entry.length(); x++){
+               entry[x] = tolower(entry[x]);
+            }
             //set up flag to tell if the word is found. 
             bool found = false;
             int index;
@@ -206,21 +212,33 @@ void Trie::destroy(Node* root){
 int Trie::search(std::string data, Node* root){
     
     int count = 0;    
-     
-//     // If the root(head) is empty
+    for (int x=0; x<data.length(); x++){
+        data[x] = tolower(data[x]);
+    }
+
+    // If the root(head) is empty
     if (root == nullptr) {
         std::cout << "Trie empty." << std::endl;
         return false;
     }
     
-//      // Create a temporary node that will iterate through the trie
+    // Create a temporary node that will iterate through the trie
     Node* currentNode = root;
     
-//     // loops through data string 
+    // loops through data string 
     for(int i = 0; i < data.length(); i++){
         int index = 0; 
-        
-//         // Initialize the index variable, representing the location of the character
+        //if at the end of the word, check for the word. 
+        if (i == (data.length() - 1)){
+            // loops through the words to check if the word is the same. 
+            for(int i = 26; i < currentNode->children.size(); i++){
+                //if the word is found set count to the word count.
+                if(currentNode->children[i]->key == data){
+                    count = currentNode->children[i]->count;
+                }
+            }
+        }    
+        // Initialize the index variable, representing the location of the character
         if(data[i] >= 'A' && data[i] <= 'Z'){
             index = data[i] - 'A';
         }
@@ -228,24 +246,16 @@ int Trie::search(std::string data, Node* root){
             index = data[i] - 'a';
         }
         
-//         // if current node is not valid
+        // if current node is not valid
         if (currentNode == nullptr){
             return 0; 
         }else{
-//               // move to next char
+            // move to next char
             currentNode = currentNode->children[index];
-                 }
-            }
-        
-        if (i == (data.length() - 1)){
-            
-            for(int i = 26; i < currentNode->children.size(); i++){
-                
-                count += root -> children[i]; 
         }
     }
-}
-    return count; 
+    //returns count of the word.
+    return count;     
 }
 
 
