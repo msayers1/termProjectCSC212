@@ -1,6 +1,6 @@
-scrabble file is from https://github.com/redbo/scrabble/blob/master/dictionary.txt
+scrabble file is from https://github.com/redbo/scrabble/blob/master/dictionary.txt (scrabbleWords.txt)
 
-The Project Gutenberg eBook of Moby-Dick; or The Whale, by Herman Melville
+The Project Gutenberg eBook of Moby-Dick; or The Whale, by Herman Melville (MobeyDick.txt)
 
 This eBook is for the use of anyone anywhere in the United States and
 most other parts of the world at no cost and with almost no restrictions
@@ -24,6 +24,8 @@ Character set encoding: UTF-8
 Produced by: Daniel Lazarus, Jonesey, and David Widger
 
 
-https://gist.github.com/dracos/dd0668f281e685bad51479e5acaadb93 wordle dictionary file list source 
+https://gist.github.com/dracos/dd0668f281e685bad51479e5acaadb93 wordle dictionary file list source  (wordledictionary.txt)
 
-https://github.com/dwyl/english-words/blob/master/words.txt dictionary file list source
+https://github.com/dwyl/english-words/blob/master/words.txt dictionary file list source (dictionary.txt)
+
+visualization word list was created by the team. (visualizationWordlist.txt)
