@@ -188,11 +188,11 @@ void Trie::descend(Node* root, std::ostream& os){
     Node* currentNode = root;
     //for loop prints the head of the linked list, and then finds the
     //children and prints them with the tail as the starting point
-    std::cout << std::endl;
+    // std::cout << std::endl;
     for(int i = currentNode->children.size(); i > 0; i--){
         if(currentNode->children[i] != nullptr){
             os << currentNode->children[i]->key << " ";
-            ascend(currentNode->children[i],os);
+            descend(currentNode->children[i],os);
         }
     }
 }

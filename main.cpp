@@ -37,8 +37,8 @@ int main(int argc, char* argv[]){
     while(running == true){
         std::cout << "\nThis Program will take an input of a word." << std::endl;
         std::cout << "Then look it up in the Scrabble Dictionary." << std::endl;
-        std::cout << "If the word is in the dictionary, then it will return True." << std::endl;
-        std::cout << "Otherwise it will return False." << std::endl;
+        std::cout << "If the word is in the dictionary, then it will state that the word is a scrabble word." << std::endl;
+        std::cout << "Otherwise it will state that the word is not a scrabble word." << std::endl;
         std::cout << "What word would you like to try:";
         std::cin >> input;
         std::cout << input << std::endl;
@@ -56,7 +56,6 @@ int main(int argc, char* argv[]){
         
     }
     // Initialize vectors for the time values. 
-    std::vector<float> searchValue;
     std::vector<float> insertValue;
     std::vector<float> visualizeValue;
     std::vector<float> recursiveValue;
@@ -81,11 +80,19 @@ int main(int argc, char* argv[]){
     //Pushes the time value on the insert vector. 
     insertValue.push_back(time);
 
+    //Announces the ascend display.
+    std::cout << "This is the ascend function output:" << std::endl;
     //runs the ascend function
     TrieTree2->ascend();
+    //Puts a new line in for the next function.
+    std::cout  << std::endl;
 
+    //Announces the ascend display.
+    std::cout << "This is the descend function output:" << std::endl;
     //runs the descend function. 
     TrieTree2->descend();
+    //Puts a new line in for the next function.
+    std::cout  << std::endl;
 
     //Starts the clock for the recursive insert function. 
     cStart = std::clock();
