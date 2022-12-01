@@ -162,33 +162,39 @@ void Trie::insert(Node* root, std::string entry){
 }
 
 void Trie::ascend(Node* root, std::ostream& os){
-    os << "test ascend" << std::endl;
-    // Node* currentNode = root;
-    // Node*child;
-    // for(int i = 0; i < currentNode->children.size(); i++){
-    //     child = currentNode->children[i];
-    //     if(child != nullptr){
-    //         return;
-    //     }
-    //     std::cout << child << " ";
-    //     preorder(child->left);
-    //     preorder(child->right);
-    // }
+    //os << "test ascend" << std::endl;
+    //end the function if the root is NULL
+    if(root == nullptr)
+        return;
+    //starting point(head) of the linked list
+    Node* currentNode = root;
+    //for loop prints the head of the linked list, and then finds the
+    //children and prints them with the head as the starting point
+    //os << "test ascend" << std::endl;
+    for(int i = 0; i < currentNode->children.size(); i++){
+        if(currentNode->children[i] != nullptr){
+            os << currentNode->children[i]->key << " ";
+            ascend(currentNode->children[i],os);
+        }
+        }
 }
 
 void Trie::descend(Node* root, std::ostream& os){
-    os << "test descend" << std::endl;
-    // Node* currentNode = root;
-    // Node*child;
-    // for(int i = 0; i < currentNode->children.size(); i++){
-    //     child = currentNode->children[i];
-    //     if(child != nullptr){
-    //         return;
-    //     }
-    //     inorder(child->left, os);
-    //     std::cout << child << " ";
-    //     preorder(child->right);
-    // }
+    //os << "test descend" << std::endl;
+    //end the function if the root is NULL
+    if(root == nullptr)
+        return;
+    //starting point(head) of the linked list
+    Node* currentNode = root;
+    //for loop prints the head of the linked list, and then finds the
+    //children and prints them with the tail as the starting point
+    std::cout << std::endl;
+    for(int i = currentNode->children.size(); i > 0; i--){
+        if(currentNode->children[i] != nullptr){
+            os << currentNode->children[i]->key << " ";
+            ascend(currentNode->children[i],os);
+        }
+    }
 }
 
 void Trie::destroy(Node* root){
