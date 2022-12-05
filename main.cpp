@@ -31,6 +31,10 @@ int main(int argc, char* argv[]){
     std::cout << "This is the ascend function output:" << std::endl;
     //runs the ascend function
     TrieTree->ascend();
+
+    //Puts a new line in for spacing.
+    std::cout  << std::endl;
+
     //Puts a new line in for the next function.
     std::cout  << std::endl;
 
@@ -44,6 +48,9 @@ int main(int argc, char* argv[]){
     TrieTree->destroy();
     //Announces the ascend display.
     std::cout << "This shows the destroy function emptied the Trie for the recursive Insert:" << std::endl;
+    //Puts a new line in for spacing.
+    std::cout  << std::endl;
+
     //runs the ascend function
     TrieTree->ascend();
     //Puts a new line in for the next function.
@@ -54,6 +61,25 @@ int main(int argc, char* argv[]){
         //runs the recursive insert function. 
         TrieTree->recursiveInsert(wordList[i]);
     }
+    //Announces the ascend display.
+    std::cout << "This is the ascend function again to show proper recursive insertation:" << std::endl;
+    //runs the ascend function
+    TrieTree->ascend();
+   //Puts a new line in for the next function.
+    std::cout  << std::endl;
+    //Puts a new line in for spacing.
+    std::cout  << std::endl;
+    TrieTree->remove("buzzword");
+
+    bool output = TrieTree->search("buzzword");
+
+    std::cout << "Buzzword was removed so it should not be found by search:(The following will be the output from search) " << (output?"true":"false") << std::endl;
+    
+    //Puts a new line in for spacing.
+    std::cout  << std::endl;
+    output = TrieTree->search("yorgurt");
+
+    std::cout << "Yorgut was not removed so it should be found by search:(The following will be the output from search) " << (output?"true":"false") << std::endl;
     
 
     //runs the visualization insert function. 

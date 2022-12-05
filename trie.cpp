@@ -18,11 +18,12 @@ void Trie::recursiveInsert(Node* root,std::string data, int pointer){
     // if the end of the word...
     if(pointer == (data.length()-1)){
         bool found;
+        for (int x=0; x<data.length(); x++){
+            data[x] = tolower(data[x]);
+        }
         //Make a word Node
         for(int i = 26; i < currentNode->children.size(); i++){
-            for (int x=0; x<data.length(); x++){
-                data[x] = tolower(data[x]);
-            }
+            
             // std::cout << entry << "/" << currentNode->children[i]->key << ": " <<  (currentNode->children[i]->key == entry) << std::endl;            
             //checks to see if the key is the full word.
             if(currentNode->children[i]->key == data){
