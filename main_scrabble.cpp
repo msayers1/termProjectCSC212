@@ -14,51 +14,40 @@ void readFile(std::string filename, std::vector<std::string>*wordList);
 int main(int argc, char* argv[]){
     //Initializes the Trie trees for the different word list and insert function combinations. 
     Trie *TrieTree = new Trie();
-   
+
     //initializes the input. 
     std::string input;
-    
-    //Word: 33
     std::vector<std::string> wordList;
-    //Reads the file for the word list. 
-    readFile("visualizationWordList.txt", &wordList); 
-    //Loop to go throught the word list. 
+    readFile("scrabbleWords.txt", &wordList); 
     for(int i = 0; i < wordList.size(); i++){
-        //Inserts each word. 
+        //inserts the word list for the Scrabble word check. 
         TrieTree->insert(wordList[i]);
     }
-    //Announces the ascend display.
-    std::cout << "This is the ascend function output:" << std::endl;
-    //runs the ascend function
-    TrieTree->ascend();
-    //Puts a new line in for the next function.
-    std::cout  << std::endl;
-
-    //Announces the descend display.
-    std::cout << "This is the descend function output:" << std::endl;
-    //runs the descend function. 
-    TrieTree->descend();
-    //Puts a new line in for the next function.
-    std::cout  << std::endl;
-
-    TrieTree->destroy();
-    //Announces the ascend display.
-    std::cout << "This shows the destroy function emptied the Trie for the recursive Insert:" << std::endl;
-    //runs the ascend function
-    TrieTree->ascend();
-    //Puts a new line in for the next function.
-    std::cout  << std::endl;
-
-    for(int i = 0; i < wordList.size(); i++){
-        //std::cout << wordList[i] << std::endl;
-        //runs the recursive insert function. 
-        TrieTree->recursiveInsert(wordList[i]);
+    
+  bool running = true;
+    bool result = false;
+    
+    while(running == true){
+        std::cout << "\nThis Program will take an input of a word." << std::endl;
+        std::cout << "Then look it up in the Scrabble Dictionary." << std::endl;
+        std::cout << "If the word is in the dictionary, then it will state that the word is a scrabble word." << std::endl;
+        std::cout << "Otherwise it will state that the word is not a scrabble word." << std::endl;
+        std::cout << "What word would you like to try:";
+        std::cin >> input;
+        std::cout << input << std::endl;
+        if(input == "quit"){
+            running = false; 
+        }else{
+            result = TrieTree->search(input);
+            if(result > 0){
+                std::cout << "\nYour word is a Scrabble word.";
+                
+            } else {
+                std::cout << "\nYour word is not a Scrabble word.";
+            }
+        }
+        
     }
-    
-
-    //runs the visualization insert function. 
-    TrieTree->visualize("graph_Visualization.dot");
-    
     
 }
 
