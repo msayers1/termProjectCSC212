@@ -24,13 +24,10 @@ void Trie::recursiveInsert(Node* root,std::string data, int pointer){
         //Make a word Node
         for(int i = 26; i < currentNode->children.size(); i++){
             
-            // std::cout << entry << "/" << currentNode->children[i]->key << ": " <<  (currentNode->children[i]->key == entry) << std::endl;            
             //checks to see if the key is the full word.
             if(currentNode->children[i]->key == data){
-                // std::cout << entry << " " <<  currentNode->children[i]->count << std::endl;            
                 //sets found to true;
                 found = true;
-                //
                 currentNode = currentNode->children[i];
                 currentNode->count = currentNode->count + 1;
             }
@@ -66,10 +63,6 @@ void Trie::recursiveInsert(Node* root,std::string data, int pointer){
         currentNode->children[index] = new Node(letter);
         // Increment the number of children counter
         currentNode->numChildren++;
-        // Update the node's generation - there is no generation yet. 
-        //currentNode->children[index]->generation = i;
-        // Add the node's value - the key is setup with new Node. 
-        //currentNode->children[index]->key = data[pointer];
     }
     // Travel to the next node
     pointer++;
@@ -77,7 +70,6 @@ void Trie::recursiveInsert(Node* root,std::string data, int pointer){
 
     // Mark the last letter as the end of a word 
     
-    //std::cout << entry << " was entered into the trie." << std::endl;
     return;
 }
 
@@ -107,10 +99,6 @@ void Trie::insert(Node* root, std::string entry){
             currentNode->children[index] = new Node(entry[i]);
             // Increment the number of children counter
             currentNode->numChildren++;
-            // Update the node's generation - there is no generation yet. 
-            //currentNode->children[index]->generation = i;
-            // Add the node's value - the key is setup with new Node. 
-            //currentNode->children[index]->key = entry[i];
         } 
         //if the end of the word...
         if (i == (entry.length() - 1)){
@@ -120,13 +108,10 @@ void Trie::insert(Node* root, std::string entry){
             //set up flag to tell if the word is found. 
             bool found = false;
             int index;
-            //std::cout << entry << "number of children of the currentNode:" << currentNode->children.size() << std::endl;
             //Cycle through the different words at with the same first letters. 
             for(int i = 26; i < currentNode->children.size(); i++){
-                // std::cout << entry << "/" << currentNode->children[i]->key << ": " <<  (currentNode->children[i]->key == entry) << std::endl;            
                 //Checks if the key(value) is equal to the entry 
                 if(currentNode->children[i]->key == entry){
-                    // std::cout << entry << " " <<  currentNode->children[i]->count << std::endl;            
                     //Sets found to true
                     found = true;
                     //Sets the current Node to the entry node. 
@@ -156,14 +141,10 @@ void Trie::insert(Node* root, std::string entry){
         } 
         
     }
-    // Mark the last letter as the end of a word 
-    
-    //std::cout << entry << " was entered into the trie." << std::endl;
-    
+
 }
 
 void Trie::ascend(Node* root, std::ostream& os){
-    //os << "test ascend" << std::endl;
     //end the function if the root is NULL
     if(root == nullptr)
         return;
@@ -171,7 +152,6 @@ void Trie::ascend(Node* root, std::ostream& os){
     Node* currentNode = root;
     //for loop prints the head of the linked list, and then finds the
     //children and prints them with the head as the starting point
-    //os << "test ascend" << std::endl;
     for(int i = 0; i < currentNode->children.size(); i++){
         if(currentNode->children[i] != nullptr){
             os << currentNode->children[i]->key << " ";
@@ -181,7 +161,6 @@ void Trie::ascend(Node* root, std::ostream& os){
 }
 
 void Trie::descend(Node* root, std::ostream& os){
-    //os << "test descend" << std::endl;
     //end the function if the root is NULL
     if(root == nullptr)
         return;
@@ -189,7 +168,6 @@ void Trie::descend(Node* root, std::ostream& os){
     Node* currentNode = root;
     //for loop prints the head of the linked list, and then finds the
     //children and prints them with the tail as the starting point
-    // std::cout << std::endl;
     for(int i = currentNode->children.size(); i > 0; i--){
         if(currentNode->children[i] != nullptr){
             os << currentNode->children[i]->key << " ";
@@ -199,20 +177,28 @@ void Trie::descend(Node* root, std::ostream& os){
 }
 
 void Trie::destroy(Node* root){
+    //Makes sure there are words. 
     if(root->children.size() > 26){
+        //Loops thru the word nodes. 
         for(int i = 26; i < root->children.size(); i++){
+            //pops out the word. 
             root->children.pop_back();
+            //deletes the node. 
             delete root->children[i];
         }
     }
+    //Loops thru the letters.
     for(int i = 0; i < root->children.size(); i++){
+        //Checks if there is a node. 
         if(root->children[i] != nullptr){
+            //calls the function recursively for each child. 
             destroy(root->children[i]);
+            //sets the child pointer to nullptr.  
             root->children[i] = nullptr;
+            //deletes the node. 
             delete root->children[i];
         }
-    }
-    
+    }    
     return;
 }
 
@@ -354,7 +340,6 @@ void Trie::visualize(std::ostringstream *listNodes, std::ostringstream *relation
     Node* child;
     //creates a parentKey to act as the label variable.
     std::string parentKey;
-    //std::cout << "The size:" << (*currentNode).children.size()  << std::endl;
     //Creates a ostringstream variable to hold the memory address to identify the node. 
     std::ostringstream get_the_address;
     //creates a parent and child node ids. 
@@ -444,7 +429,6 @@ void Trie::visualize(std::string filename){
     std::ofstream output_file(filename);
     std::ostringstream listNodes;
     std::ostringstream relationships;
-    //std::cout << "digraph g {" << std::endl;
     output_file << "digraph g { \n";
     this->visualize(&listNodes, &relationships, this->root);
     output_file << listNodes.str() << relationships.str();
