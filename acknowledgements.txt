@@ -1,0 +1,31 @@
+scrabble file is from https://github.com/redbo/scrabble/blob/master/dictionary.txt (scrabbleWords.txt)
+
+The Project Gutenberg eBook of Moby-Dick; or The Whale, by Herman Melville (MobeyDick.txt)
+
+This eBook is for the use of anyone anywhere in the United States and
+most other parts of the world at no cost and with almost no restrictions
+whatsoever. You may copy it, give it away or re-use it under the terms
+of the Project Gutenberg License included with this eBook or online at
+www.gutenberg.org. If you are not located in the United States, you
+will have to check the laws of the country where you are located before
+using this eBook.
+
+Title: Moby-Dick; or The Whale
+
+Author: Herman Melville
+
+Release Date: June, 2001 [eBook #2701]
+[Most recently updated: August 18, 2021]
+
+Language: English
+
+Character set encoding: UTF-8
+
+Produced by: Daniel Lazarus, Jonesey, and David Widger
+
+
+https://gist.github.com/dracos/dd0668f281e685bad51479e5acaadb93 wordle dictionary file list source  (wordledictionary.txt)
+
+https://github.com/dwyl/english-words/blob/master/words.txt dictionary file list source (dictionary.txt)
+
+visualization word list was created by the team. (visualizationWordlist.txt)
