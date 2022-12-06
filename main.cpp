@@ -25,7 +25,7 @@ int main(int argc, char* argv[]){
     //Loop to go throught the word list. 
     for(int i = 0; i < wordList.size(); i++){
         //Inserts each word. 
-        TrieTree->insert(wordList[i]);
+        TrieTree->recursiveInsert(wordList[i]);
     }
     //Announces the ascend display.
     std::cout << "This is the ascend function output:" << std::endl;
@@ -38,12 +38,6 @@ int main(int argc, char* argv[]){
     //Puts a new line in for the next function.
     std::cout  << std::endl;
 
-    //Announces the descend display.
-    std::cout << "This is the descend function output:" << std::endl;
-    //runs the descend function. 
-    TrieTree->descend();
-    //Puts a new line in for the next function.
-    std::cout  << std::endl;
 
     TrieTree->destroy();
     //Announces the ascend display.
@@ -59,7 +53,7 @@ int main(int argc, char* argv[]){
     for(int i = 0; i < wordList.size(); i++){
         //std::cout << wordList[i] << std::endl;
         //runs the recursive insert function. 
-        TrieTree->recursiveInsert(wordList[i]);
+        TrieTree->insert(wordList[i]);
     }
     //Announces the ascend display.
     std::cout << "This is the ascend function again to show proper recursive insertation:" << std::endl;
@@ -69,6 +63,15 @@ int main(int argc, char* argv[]){
     std::cout  << std::endl;
     //Puts a new line in for spacing.
     std::cout  << std::endl;
+
+    //Announces the descend display.
+    std::cout << "This is the descend function output:" << std::endl;
+    //runs the descend function. 
+    TrieTree->descend();
+    //Puts a new line in for the next function.
+    std::cout  << std::endl;
+
+
     TrieTree->remove("buzzword");
 
     bool output = TrieTree->search("buzzword");
