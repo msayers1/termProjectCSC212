@@ -41,4 +41,4 @@ Use the Scrabble word implementation (will print out instructions, and prompt th
 - trie.cpp - trie class file
 - node.cpp - node class file
 
-### No arguments are given. A simple command line input is given to recieve a possible Scrabble word and test. Then loops again until the quit command is given. Once you quit from the Scrabble algorithm, it runs through different scenarios with the trie class. and outputs the timing of those scenarios. 
+### No arguments are given. A simple command line input is given to recieve a possible Scrabble word for the Scrabble main. Once you quit from the Scrabble algorithm, it stops the program. The main simply runs through the different functions to show correct implementation. The main graph cycles thru from 1000 to 1 million by 3000 increments and outputs the timing of for the different functions at the different word list sizes into an output.csv. 
