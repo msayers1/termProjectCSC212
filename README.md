@@ -24,14 +24,19 @@ or
 ### Extra files
 - acknowledgements.txt - source for the word lists. 
 - *.dot are the dot files representing the different word lists in our trie data structure. 
-- graph_visualization.jpeg - graph of the one list small enough to be converted to a jpeg. 
+- graph_visualization.jpeg - graph of the one list small enough to be converted to a jpeg.
+- output.csv - the graph data for the time vs word list size graph.
+- MapTrie folder contains the the class using the map data structure vice a vector. 
 
 
 ### Command line to compile and run at the same time
-g++ -g -std=c++11 main.cpp trie.cpp node.cpp -o output && ./output
+Test all function: g++ -g -std=c++11 main.cpp trie.cpp node.cpp -o output && ./output  
+Create graph csv: g++ -g -std=c++11 main_graph.cpp trie.cpp node.cpp -o output && ./output
+Use the Scrabble word implementation (will print out instructions, and prompt the user for input): g++ -g -std=c++11 main_scrabble.cpp trie.cpp node.cpp -o output && ./output
 
 ### Files needed to compile
-- main.cpp - main file 
+- main.cpp - main file, runs through all the functions
+- main_graph.cpp - Generates a csv file which was used to create a graph of time vs word list size. 
 - trie.cpp - trie class file
 - node.cpp - node class file
 
