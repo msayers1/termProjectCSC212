@@ -51,7 +51,6 @@ int main(int argc, char* argv[]){
     std::cout  << std::endl;
 
     for(int i = 0; i < wordList.size(); i++){
-        //std::cout << wordList[i] << std::endl;
         //runs the recursive insert function. 
         TrieTree->insert(wordList[i]);
     }
@@ -59,7 +58,7 @@ int main(int argc, char* argv[]){
     std::cout << "This is the ascend function again to show proper recursive insertation:" << std::endl;
     //runs the ascend function
     TrieTree->ascend();
-   //Puts a new line in for the next function.
+    //Puts a new line in for the next function.
     std::cout  << std::endl;
     //Puts a new line in for spacing.
     std::cout  << std::endl;

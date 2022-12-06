@@ -54,7 +54,6 @@ int main(int argc, char* argv[]){
  
         cStart = std::clock();
         for(int k = 0; k < wordListForLoop.size(); k++){
-            //std::cout << wordList[i] << std::endl;
             //runs the insert function. 
             TrieTree->insert(wordListForLoop[k]);
         }
