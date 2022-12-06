@@ -34,9 +34,10 @@ Test all function: g++ -g -std=c++11 main.cpp trie.cpp node.cpp -o output && ./o
 Create graph csv: g++ -g -std=c++11 main_graph.cpp trie.cpp node.cpp -o output && ./output
 Use the Scrabble word implementation (will print out instructions, and prompt the user for input): g++ -g -std=c++11 main_scrabble.cpp trie.cpp node.cpp -o output && ./output
 
-### Files needed to compile
+### Files needed to compile ( only one of the three files which start with main are required.)
 - main.cpp - main file, runs through all the functions
 - main_graph.cpp - Generates a csv file which was used to create a graph of time vs word list size. 
+- main_scrabble.cpp - Runs the scrabble word checker algorithim. 
 - trie.cpp - trie class file
 - node.cpp - node class file
 
